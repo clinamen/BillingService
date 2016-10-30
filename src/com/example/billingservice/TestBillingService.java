@@ -44,10 +44,14 @@ public class TestBillingService {
 		bill.addItem(steakSandwich);
 		assertEquals(bill.printItems(), 
 				"Item: Cola\t0.5\nItem: Coffee\t1.0\nItem: Cheese Sandwich\t2.0\nItem: Steak Sandwich\t4.5\n");
+		
 		System.out.println("List Items");
 		System.out.println(bill.printItems());
 	}
 	
+	/* Test calculation of total before service charge
+	 * 
+	 */
 	@Test
 	public void testSubTotalItems(){
 		
@@ -64,11 +68,15 @@ public class TestBillingService {
 		MenuItem steakSandwich = new MenuItem("Steak Sandwich", 4.5,true);
 		bill.addItem(steakSandwich);
 		assertEquals(bill.getSubTotal(), 8.0, 0.00);
+		
 		System.out.println("List Items & Sub Total");
 		System.out.println(bill.printItems());
 		System.out.println("Sub Total:\t"+bill.getSubTotal()+"\n");
 	}
 	
+	/* Test calculation of service charge
+	 * 
+	 */
 	@Test
 	public void testGetServiceCharge(){
 		
@@ -82,6 +90,10 @@ public class TestBillingService {
 		bill.addItem(cheeseSandwich);
 		assertEquals(bill.getServiceCharge(), 0.25, 0.00);
 		
+		System.out.println("List Items, Sub Total & Service Charge");
+		System.out.println(bill.printItems());
+		System.out.println("Sub Total:\t"+bill.getSubTotal()+"\n");
+		System.out.println("Service Charge: "+bill.getServiceCharge() +"\n");
 	}
 
 }

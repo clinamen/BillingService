@@ -11,6 +11,7 @@ import java.util.List;
 public class Bill {
 	
 	private List<MenuItem> items = new ArrayList<MenuItem>() ;
+	private boolean containsFood = false;
 
 	/**
 	 * Add a menu item to bill
@@ -19,6 +20,7 @@ public class Bill {
 	public void addItem(MenuItem item) {
 		
 		items.add(item);
+		if(item.isFood()) this.containsFood  = true;		
 		
 	}
 
@@ -64,8 +66,17 @@ public class Bill {
 		return total;
 	}
 
+	/**
+	 * Get the service charge if the bill contains food
+	 * @return
+	 */
 	public double getServiceCharge() {
-		// TODO Auto-generated method stub
+
+		if(this.containsFood){
+			
+			return this.getSubTotal() * 0.1;
+		}
+		
 		return 0;
 	}
 
