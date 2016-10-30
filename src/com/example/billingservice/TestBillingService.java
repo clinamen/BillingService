@@ -122,4 +122,33 @@ public class TestBillingService {
 		// Should not exceed 20.0
 		assertEquals(bill.getServiceCharge(), 20.0, 0.00);
 	}
+	
+	/* Test to print out the items added
+	 * 
+	 */
+	@Test
+	public void testPrintBill() {
+		
+		Bill bill = new Bill();
+	
+		MenuItem cola1 = new MenuItem("Cola", 0.5);
+		bill.addItem(cola1);
+		MenuItem cola2 = new MenuItem("Cola", 0.5);
+		bill.addItem(cola2);
+		MenuItem coffee = new MenuItem("Coffee", 1.0);
+		bill.addItem(coffee);
+		MenuItem cheeseSandwich = new MenuItem("Cheese Sandwich", 2.0, true);
+		bill.addItem(cheeseSandwich);
+		MenuItem steakSandwich = new MenuItem("Steak Sandwich", 4.5, true, true);
+		bill.addItem(steakSandwich);
+		assertEquals(bill.printBill(), 
+				"Item: Cola\t0.50\nItem: Cola\t0.50\nItem: Coffee\t1.00\n"
+				+ "Item: Cheese Sandwich\t2.00\nItem: Steak Sandwich\t4.50\n"
+				+ "Sub Total:\t"+currencyFormat.format(bill.getSubTotal())+"\n"
+				+ "Service Charge: "+currencyFormat.format(bill.getServiceCharge()) +"\n"
+				+ "Grand Total: "+currencyFormat.format(bill.getGrandTotal()) +"\n");
+		
+		System.out.println("List Items");
+		System.out.println(bill.printItems());
+	}
 }

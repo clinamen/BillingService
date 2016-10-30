@@ -112,4 +112,14 @@ public class Bill {
 		return bd.doubleValue();
 	}
 
+	public double getGrandTotal() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public String printBill() {
+		// TODO Auto-generated method stub
+		return "";
+	}
+
 }
