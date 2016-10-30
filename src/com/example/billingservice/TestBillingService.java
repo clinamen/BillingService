@@ -50,7 +50,7 @@ public class TestBillingService {
 		assertEquals(bill.printItems(), 
 				"Item: Cola\t0.50\nItem: Coffee\t1.00\nItem: Cheese Sandwich\t2.00\nItem: Steak Sandwich\t4.50\n");
 		
-		System.out.println("List Items");
+		System.out.println("***List Items***");
 		System.out.println(bill.printItems());
 	}
 	
@@ -74,7 +74,7 @@ public class TestBillingService {
 		bill.addItem(steakSandwich);
 		assertEquals(bill.getSubTotal(), 8.0, 0.00);
 		
-		System.out.println("List Items & Sub Total");
+		System.out.println("***List Items & Sub Total***");
 		System.out.println(bill.printItems());
 		System.out.println("Sub Total:\t"+currencyFormat.format(bill.getSubTotal())+"\n");
 	}
@@ -99,7 +99,7 @@ public class TestBillingService {
 		bill.addItem(steakSandwich);
 		assertEquals(bill.getServiceCharge(), 1.4, 0.00);
 		
-		System.out.println("List Items, Sub Total & Service Charge");
+		System.out.println("***List Items, Sub Total & Service Charge***");
 		System.out.println(bill.printItems());
 		System.out.println("Sub Total:\t"+currencyFormat.format(bill.getSubTotal())+"\n");
 		System.out.println("Service Charge: "+currencyFormat.format(bill.getServiceCharge()) +"\n");
@@ -148,7 +148,7 @@ public class TestBillingService {
 				+ "Service Charge:\t"+currencyFormat.format(bill.getServiceCharge()) +"\n"
 				+ "Grand Total:\t"+currencyFormat.format(bill.getGrandTotal()) +"\n");
 		
-		System.out.println("Show Bill");
+		System.out.println("***Show Bill***");
 		System.out.println(bill.printItems());
 		System.out.println("Sub Total:\t"+currencyFormat.format(bill.getSubTotal())+"\n");
 		System.out.println("Service Charge: "+currencyFormat.format(bill.getServiceCharge()) +"\n");

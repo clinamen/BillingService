@@ -81,7 +81,7 @@ public class Bill {
 	 * Get the service charge if the bill contains food.
 	 * Different rates are charged for cold food and hot food.
 	 * A maximum charge applies
-	 * @return
+	 * @return The service charge which applies to current bill items
 	 */
 	public double getServiceCharge() {
 		
@@ -112,11 +112,19 @@ public class Bill {
 		return bd.doubleValue();
 	}
 
+	/**
+	 * Get the grand total of menu items and service charge
+	 * @return The grand total
+	 */
 	public double getGrandTotal() {
 		
 		return getSubTotal()+getServiceCharge();
 	}
 
+	/**
+	 * Print the final itemised bill 
+	 * @return A string representing the bill
+	 */
 	public String printBill() {
 
 		String billStr = printItems();
