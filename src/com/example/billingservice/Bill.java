@@ -15,6 +15,7 @@ public class Bill {
 	
 	public static double SERVICE_CHARGE_FOOD = 0.1;
 	public static double SERVICE_CHARGE_HOT_FOOD = 0.2;
+	public static double SERVICE_CHARGE_MAX = 20;
 	
 	private List<MenuItem> items = new ArrayList<MenuItem>() ;
 	private boolean containsFood = false;
@@ -77,21 +78,29 @@ public class Bill {
 	}
 
 	/**
-	 * Get the service charge if the bill contains food
+	 * Get the service charge if the bill contains food.
+	 * Different rates are charged for cold food and hot food.
+	 * A maximum charge applies
 	 * @return
 	 */
 	public double getServiceCharge() {
+		
+		double serviceCharge = 0;
 
 		if(this.containsHotFood){
 			
-			return roundDouble(this.getSubTotal() * SERVICE_CHARGE_HOT_FOOD);
+			serviceCharge = roundDouble(this.getSubTotal() * SERVICE_CHARGE_HOT_FOOD);
 		}
 		else if(this.containsFood){
 			
-			return roundDouble(this.getSubTotal() * SERVICE_CHARGE_FOOD);
+			serviceCharge = roundDouble(this.getSubTotal() * SERVICE_CHARGE_FOOD);
 		}
 		 
-		return 0;
+		if(serviceCharge > SERVICE_CHARGE_MAX) {
+			serviceCharge = SERVICE_CHARGE_MAX;
+		}
+		
+		return serviceCharge;
 	}
 	
 	/*
