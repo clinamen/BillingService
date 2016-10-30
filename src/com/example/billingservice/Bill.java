@@ -113,13 +113,18 @@ public class Bill {
 	}
 
 	public double getGrandTotal() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return getSubTotal()+getServiceCharge();
 	}
 
 	public String printBill() {
-		// TODO Auto-generated method stub
-		return "";
+
+		String billStr = printItems();
+		billStr += "Sub Total:\t"+currencyFormat.format(getSubTotal())+"\n";
+		billStr += "Service Charge:\t"+currencyFormat.format(getServiceCharge())+"\n";
+		billStr += "Grand Total:\t"+currencyFormat.format(getGrandTotal())+"\n";
+		
+		return billStr;
 	}
 
 }

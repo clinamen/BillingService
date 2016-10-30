@@ -145,10 +145,13 @@ public class TestBillingService {
 				"Item: Cola\t0.50\nItem: Cola\t0.50\nItem: Coffee\t1.00\n"
 				+ "Item: Cheese Sandwich\t2.00\nItem: Steak Sandwich\t4.50\n"
 				+ "Sub Total:\t"+currencyFormat.format(bill.getSubTotal())+"\n"
-				+ "Service Charge: "+currencyFormat.format(bill.getServiceCharge()) +"\n"
-				+ "Grand Total: "+currencyFormat.format(bill.getGrandTotal()) +"\n");
+				+ "Service Charge:\t"+currencyFormat.format(bill.getServiceCharge()) +"\n"
+				+ "Grand Total:\t"+currencyFormat.format(bill.getGrandTotal()) +"\n");
 		
-		System.out.println("List Items");
+		System.out.println("Show Bill");
 		System.out.println(bill.printItems());
+		System.out.println("Sub Total:\t"+currencyFormat.format(bill.getSubTotal())+"\n");
+		System.out.println("Service Charge: "+currencyFormat.format(bill.getServiceCharge()) +"\n");
+		System.out.println("Grand Total:\t"+currencyFormat.format(bill.getGrandTotal())+"\n");
 	}
 }
