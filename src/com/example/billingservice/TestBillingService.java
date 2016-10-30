@@ -90,6 +90,10 @@ public class TestBillingService {
 		bill.addItem(cheeseSandwich);
 		assertEquals(bill.getServiceCharge(), 0.25, 0.00);
 		
+		MenuItem steakSandwich = new MenuItem("Steak Sandwich", 4.5, true);
+		bill.addItem(steakSandwich);
+		assertEquals(bill.getServiceCharge(), 1.4, 0.00);
+		
 		System.out.println("List Items, Sub Total & Service Charge");
 		System.out.println(bill.printItems());
 		System.out.println("Sub Total:\t"+bill.getSubTotal()+"\n");
