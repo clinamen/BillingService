@@ -38,9 +38,9 @@ public class TestBillingService {
 		bill.addItem(coffee);
 		assertEquals(bill.printItems(), 
 				"Item: Cola\t0.5\nItem: Coffee\t1.0\n");
-		MenuItem cheeseSandwich = new MenuItem("Cheese Sandwich", 2.0);
+		MenuItem cheeseSandwich = new MenuItem("Cheese Sandwich", 2.0, true);
 		bill.addItem(cheeseSandwich);
-		MenuItem steakSandwich = new MenuItem("Steak Sandwich", 4.5);
+		MenuItem steakSandwich = new MenuItem("Steak Sandwich", 4.5, true);
 		bill.addItem(steakSandwich);
 		assertEquals(bill.printItems(), 
 				"Item: Cola\t0.5\nItem: Coffee\t1.0\nItem: Cheese Sandwich\t2.0\nItem: Steak Sandwich\t4.5\n");
@@ -49,24 +49,39 @@ public class TestBillingService {
 	}
 	
 	@Test
-	public void testTotalItems(){
+	public void testSubTotalItems(){
 		
 		Bill bill = new Bill();
 		
 		MenuItem cola = new MenuItem("Cola", 0.5);
 		bill.addItem(cola);
-		assertEquals(bill.getTotal(), 0.5, 0.00);
+		assertEquals(bill.getSubTotal(), 0.5, 0.00);
 		MenuItem coffee = new MenuItem("Coffee", 1.0);
 		bill.addItem(coffee);
-		assertEquals(bill.getTotal(), 1.5, 0.00);
-		MenuItem cheeseSandwich = new MenuItem("Cheese Sandwich", 2.0);
+		assertEquals(bill.getSubTotal(), 1.5, 0.00);
+		MenuItem cheeseSandwich = new MenuItem("Cheese Sandwich", 2.0, true);
 		bill.addItem(cheeseSandwich);
-		MenuItem steakSandwich = new MenuItem("Steak Sandwich", 4.5);
+		MenuItem steakSandwich = new MenuItem("Steak Sandwich", 4.5,true);
 		bill.addItem(steakSandwich);
-		assertEquals(bill.getTotal(), 8.0, 0.00);
-		System.out.println("List Items & Total");
+		assertEquals(bill.getSubTotal(), 8.0, 0.00);
+		System.out.println("List Items & Sub Total");
 		System.out.println(bill.printItems());
-		System.out.println("Total:\t"+bill.getTotal()+"\n");
+		System.out.println("Sub Total:\t"+bill.getSubTotal()+"\n");
+	}
+	
+	@Test
+	public void testGetServiceCharge(){
+		
+		Bill bill = new Bill();
+		
+		MenuItem cola = new MenuItem("Cola", 0.5);
+		bill.addItem(cola);
+		assertEquals(bill.getServiceCharge(), 0, 0.00);
+		
+		MenuItem cheeseSandwich = new MenuItem("Cheese Sandwich", 2.0, true);
+		bill.addItem(cheeseSandwich);
+		assertEquals(bill.getServiceCharge(), 0.25, 0.00);
+		
 	}
 
 }

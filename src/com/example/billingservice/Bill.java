@@ -49,10 +49,10 @@ public class Bill {
 	}
 
 	/**
-	 * Get the total cost of items added to bill
+	 * Get the total cost of items added to bill prior to any service charge
 	 * @return The cost
 	 */
-	public double getTotal() {
+	public double getSubTotal() {
 		
 		double total = 0;
 		
@@ -62,6 +62,11 @@ public class Bill {
 		}
 		
 		return total;
+	}
+
+	public double getServiceCharge() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
