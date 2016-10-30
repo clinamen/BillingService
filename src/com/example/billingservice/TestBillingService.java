@@ -104,5 +104,22 @@ public class TestBillingService {
 		System.out.println("Sub Total:\t"+currencyFormat.format(bill.getSubTotal())+"\n");
 		System.out.println("Service Charge: "+currencyFormat.format(bill.getServiceCharge()) +"\n");
 	}
-
+	
+	/*
+	 * Test the service charge cannot exceed 20.00
+	 */
+	@Test
+	public void testMaxServiceCharge(){
+		
+		Bill bill = new Bill();
+		// Add 30 steak sandwiches - total 135.00, service charge @ 20% = 27.00
+		for(int i=0; i < 30; i++){
+			
+			MenuItem steakSandwich = new MenuItem("Steak Sandwich", 4.5, true, true);
+			bill.addItem(steakSandwich);
+			
+		}
+		// Should not exceed 20.0
+		assertEquals(bill.getServiceCharge(), 20.0, 0.00);
+	}
 }
