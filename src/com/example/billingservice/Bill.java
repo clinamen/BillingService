@@ -1,5 +1,8 @@
 package com.example.billingservice;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +19,8 @@ public class Bill {
 	private List<MenuItem> items = new ArrayList<MenuItem>() ;
 	private boolean containsFood = false;
 	private boolean containsHotFood;
+	
+	private DecimalFormat currencyFormat = new DecimalFormat("0.00");
 
 	/**
 	 * Add a menu item to bill
@@ -48,7 +53,7 @@ public class Bill {
 		
 		for(MenuItem item : items){
 			
-			billStr = billStr + "Item: "+item.getName() + "\t" + item.getPrice()+"\n";
+			billStr = billStr + "Item: "+item.getName() + "\t" + currencyFormat.format(item.getPrice())+"\n";
 			
 		}
 		
@@ -79,14 +84,23 @@ public class Bill {
 
 		if(this.containsHotFood){
 			
-			return this.getSubTotal() * SERVICE_CHARGE_HOT_FOOD;
+			return roundDouble(this.getSubTotal() * SERVICE_CHARGE_HOT_FOOD);
 		}
 		else if(this.containsFood){
 			
-			return this.getSubTotal() * SERVICE_CHARGE_FOOD;
+			return roundDouble(this.getSubTotal() * SERVICE_CHARGE_FOOD);
 		}
 		 
 		return 0;
+	}
+	
+	/*
+	 * Utility method to round a double value to 2 decimal places
+	 */
+	private double roundDouble(double d){
+		
+		BigDecimal bd = new BigDecimal(d).setScale(2, RoundingMode.HALF_EVEN);
+		return bd.doubleValue();
 	}
 
 }

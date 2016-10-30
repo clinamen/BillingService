@@ -1,9 +1,14 @@
 package com.example.billingservice;
 
 import static org.junit.Assert.*;
+
+import java.text.DecimalFormat;
+
 import org.junit.Test;
 
 public class TestBillingService {
+	
+	private DecimalFormat currencyFormat = new DecimalFormat("0.00");
 
 	/* Test to ensure items are correctly added to bill
 	 * 
@@ -37,13 +42,13 @@ public class TestBillingService {
 		MenuItem coffee = new MenuItem("Coffee", 1.0);
 		bill.addItem(coffee);
 		assertEquals(bill.printItems(), 
-				"Item: Cola\t0.5\nItem: Coffee\t1.0\n");
+				"Item: Cola\t0.50\nItem: Coffee\t1.00\n");
 		MenuItem cheeseSandwich = new MenuItem("Cheese Sandwich", 2.0, true);
 		bill.addItem(cheeseSandwich);
 		MenuItem steakSandwich = new MenuItem("Steak Sandwich", 4.5, true, true);
 		bill.addItem(steakSandwich);
 		assertEquals(bill.printItems(), 
-				"Item: Cola\t0.5\nItem: Coffee\t1.0\nItem: Cheese Sandwich\t2.0\nItem: Steak Sandwich\t4.5\n");
+				"Item: Cola\t0.50\nItem: Coffee\t1.00\nItem: Cheese Sandwich\t2.00\nItem: Steak Sandwich\t4.50\n");
 		
 		System.out.println("List Items");
 		System.out.println(bill.printItems());
@@ -71,7 +76,7 @@ public class TestBillingService {
 		
 		System.out.println("List Items & Sub Total");
 		System.out.println(bill.printItems());
-		System.out.println("Sub Total:\t"+bill.getSubTotal()+"\n");
+		System.out.println("Sub Total:\t"+currencyFormat.format(bill.getSubTotal())+"\n");
 	}
 	
 	/* Test calculation of service charge
@@ -92,12 +97,12 @@ public class TestBillingService {
 		
 		MenuItem steakSandwich = new MenuItem("Steak Sandwich", 4.5, true, true);
 		bill.addItem(steakSandwich);
-		assertEquals(bill.getServiceCharge(), 1.4, 0.001);
+		assertEquals(bill.getServiceCharge(), 1.4, 0.00);
 		
 		System.out.println("List Items, Sub Total & Service Charge");
 		System.out.println(bill.printItems());
-		System.out.println("Sub Total:\t"+bill.getSubTotal()+"\n");
-		System.out.println("Service Charge: "+bill.getServiceCharge() +"\n");
+		System.out.println("Sub Total:\t"+currencyFormat.format(bill.getSubTotal())+"\n");
+		System.out.println("Service Charge: "+currencyFormat.format(bill.getServiceCharge()) +"\n");
 	}
 
 }
