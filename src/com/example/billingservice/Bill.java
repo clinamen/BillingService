@@ -27,8 +27,41 @@ public class Bill {
 	 * @return The list of items
 	 */
 	public List<MenuItem> getItems() {
-		// TODO Auto-generated method stub
+		
 		return items;
+	}
+
+	/**
+	 * Return a string containing the current items in the bill
+	 * @return The string list of items
+	 */
+	public String printItems() {
+		
+		String billStr = "";
+		
+		for(MenuItem item : items){
+			
+			billStr = billStr + "Item: "+item.getName() + "\t" + item.getPrice()+"\n";
+			
+		}
+		
+		return billStr;
+	}
+
+	/**
+	 * Get the total cost of items added to bill
+	 * @return The cost
+	 */
+	public double getTotal() {
+		
+		double total = 0;
+		
+		for(MenuItem item : items){
+			
+			total += item.getPrice();
+		}
+		
+		return total;
 	}
 
 }
