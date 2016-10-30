@@ -10,8 +10,12 @@ import java.util.List;
  */
 public class Bill {
 	
+	public static double SERVICE_CHARGE_FOOD = 0.1;
+	public static double SERVICE_CHARGE_HOT_FOOD = 0.2;
+	
 	private List<MenuItem> items = new ArrayList<MenuItem>() ;
 	private boolean containsFood = false;
+	private boolean containsHotFood;
 
 	/**
 	 * Add a menu item to bill
@@ -20,7 +24,8 @@ public class Bill {
 	public void addItem(MenuItem item) {
 		
 		items.add(item);
-		if(item.isFood()) this.containsFood  = true;		
+		if(item.isFood()) this.containsFood  = true;
+		if(item.isHotFood()) this.containsHotFood  = true;
 		
 	}
 
@@ -72,11 +77,15 @@ public class Bill {
 	 */
 	public double getServiceCharge() {
 
-		if(this.containsFood){
+		if(this.containsHotFood){
 			
-			return this.getSubTotal() * 0.1;
+			return this.getSubTotal() * SERVICE_CHARGE_HOT_FOOD;
 		}
-		
+		else if(this.containsFood){
+			
+			return this.getSubTotal() * SERVICE_CHARGE_FOOD;
+		}
+		 
 		return 0;
 	}
 

@@ -10,6 +10,8 @@ public class MenuItem {
 	private String name;
 	private double price;
 	private boolean food = false;
+	private boolean hotFood = false;
+
 
 	/**
 	 * Construct a new non food menu item
@@ -32,6 +34,28 @@ public class MenuItem {
 		this.name = name;
 		this.price = price;
 		this.food = food;
+	}
+	
+	/**
+	 * Construct a new menu item
+	 * @param name	The name of the menu item
+	 * @param price	The price of the menu item
+	 * @param food True is item is food
+	 * @param hotFood True is item is hot food
+	 */
+	public MenuItem(String name, double price, boolean food, boolean hotFood) {
+		this.name = name;
+		this.price = price;
+		this.food = food;
+		this.hotFood  = hotFood;
+	}
+	
+	/**
+	 * Is the menu item hot food
+	 * @return True if is food
+	 */
+	public boolean isHotFood() {
+		return hotFood;
 	}
 
 	/**

@@ -40,7 +40,7 @@ public class TestBillingService {
 				"Item: Cola\t0.5\nItem: Coffee\t1.0\n");
 		MenuItem cheeseSandwich = new MenuItem("Cheese Sandwich", 2.0, true);
 		bill.addItem(cheeseSandwich);
-		MenuItem steakSandwich = new MenuItem("Steak Sandwich", 4.5, true);
+		MenuItem steakSandwich = new MenuItem("Steak Sandwich", 4.5, true, true);
 		bill.addItem(steakSandwich);
 		assertEquals(bill.printItems(), 
 				"Item: Cola\t0.5\nItem: Coffee\t1.0\nItem: Cheese Sandwich\t2.0\nItem: Steak Sandwich\t4.5\n");
@@ -65,7 +65,7 @@ public class TestBillingService {
 		assertEquals(bill.getSubTotal(), 1.5, 0.00);
 		MenuItem cheeseSandwich = new MenuItem("Cheese Sandwich", 2.0, true);
 		bill.addItem(cheeseSandwich);
-		MenuItem steakSandwich = new MenuItem("Steak Sandwich", 4.5,true);
+		MenuItem steakSandwich = new MenuItem("Steak Sandwich", 4.5,true, true);
 		bill.addItem(steakSandwich);
 		assertEquals(bill.getSubTotal(), 8.0, 0.00);
 		
@@ -90,9 +90,9 @@ public class TestBillingService {
 		bill.addItem(cheeseSandwich);
 		assertEquals(bill.getServiceCharge(), 0.25, 0.00);
 		
-		MenuItem steakSandwich = new MenuItem("Steak Sandwich", 4.5, true);
+		MenuItem steakSandwich = new MenuItem("Steak Sandwich", 4.5, true, true);
 		bill.addItem(steakSandwich);
-		assertEquals(bill.getServiceCharge(), 1.4, 0.00);
+		assertEquals(bill.getServiceCharge(), 1.4, 0.001);
 		
 		System.out.println("List Items, Sub Total & Service Charge");
 		System.out.println(bill.printItems());
